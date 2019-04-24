@@ -53,6 +53,13 @@ Resources:
 
   InstanceSecurityGroup:
     Type: AWS::EC2::SecurityGroup
+    Metadata:
+    cfn_nag:
+      rules_to_suppress:
+        - id: W9
+          reason: "This is a public facing ELB and ingress from the internet should be permitted."
+        - id: W2
+          reason: "This is a public facing ELB and ingress from the internet should be permitted."
     DependsOn:
       - Subnet
     Properties:
