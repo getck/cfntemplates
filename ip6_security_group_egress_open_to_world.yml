@@ -53,19 +53,12 @@ Resources:
 
   InstanceSecurityGroup:
     Type: AWS::EC2::SecurityGroup
-    Metadata:
-    cfn_nag:
-      rules_to_suppress:
-        - id: W9
-          reason: "This is a public facing ELB and ingress from the internet should be permitted."
-        - id: W2
-          reason: "This is a public facing ELB and ingress from the internet should be permitted."
     DependsOn:
       - Subnet
     Properties:
       VpcId: !Ref VPC
-      GroupDescription: Enable SSH and IPsec
-      SecurityGroupIngress:
+      GroupDescription: InstanceSecurityGroup
+      SecurityGroupEgress:
         - IpProtocol: tcp
           FromPort: '22'
           ToPort: '22'
@@ -73,19 +66,12 @@ Resources:
 
   InstanceSecurityGroup2:
     Type: AWS::EC2::SecurityGroup
-    Metadata:
-    cfn_nag:
-      rules_to_suppress:
-        - id: W9
-          reason: "This is a public facing ELB and ingress from the internet should be permitted."
-        - id: W2
-          reason: "This is a public facing ELB and ingress from the internet should be permitted."
     DependsOn:
       - Subnet
     Properties:
       VpcId: !Ref VPC
-      GroupDescription: Enable SSH and IPsec
-      SecurityGroupIngress:
+      GroupDescription: InstanceSecurityGroup2
+      SecurityGroupEgress:
         - IpProtocol: tcp
           FromPort: '22'
           ToPort: '22'
@@ -93,19 +79,12 @@ Resources:
 
   InstanceSecurityGroup3:
     Type: AWS::EC2::SecurityGroup
-    Metadata:
-    cfn_nag:
-      rules_to_suppress:
-        - id: W9
-          reason: "This is a public facing ELB and ingress from the internet should be permitted."
-        - id: W2
-          reason: "This is a public facing ELB and ingress from the internet should be permitted."
     DependsOn:
       - Subnet
     Properties:
       VpcId: !Ref VPC
-      GroupDescription: Enable SSH and IPsec
-      SecurityGroupIngress:
+      GroupDescription: InstanceSecurityGroup3
+      SecurityGroupEgress:
         - IpProtocol: tcp
           FromPort: '22'
           ToPort: '22'
@@ -113,26 +92,19 @@ Resources:
 
   InstanceSecurityGroup4:
     Type: AWS::EC2::SecurityGroup
-    Metadata:
-    cfn_nag:
-      rules_to_suppress:
-        - id: W9
-          reason: "This is a public facing ELB and ingress from the internet should be permitted."
-        - id: W2
-          reason: "This is a public facing ELB and ingress from the internet should be permitted."
     DependsOn:
       - Subnet
     Properties:
       VpcId: !Ref VPC
-      GroupDescription: Enable SSH and IPsec
+      GroupDescription: InstanceSecurityGroup4
       SecurityGroupIngress:
         - IpProtocol: tcp
           FromPort: '22'
           ToPort: '22'
           CidrIpv6: 2001:800::/21
 
-  securityGroupIngress:
-    Type: "AWS::EC2::SecurityGroupIngress"
+  securityGroupEgress:
+    Type: "AWS::EC2::SecurityGroupEgress"
     Properties:
       GroupId: "sg-12341234"
       CidrIpv6: ::/0
