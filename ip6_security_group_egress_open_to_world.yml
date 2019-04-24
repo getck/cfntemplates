@@ -53,13 +53,6 @@ Resources:
 
   InstanceSecurityGroup:
     Type: AWS::EC2::SecurityGroup
-    Metadata:
-    cfn_nag:
-      rules_to_suppress:
-        - id: W9
-          reason: "This is a public facing ELB and ingress from the internet should be permitted."
-        - id: W5
-          reason: "This is a public facing ELB and ingress from the internet should be permitted."
     DependsOn:
       - Subnet
     Properties:
@@ -73,13 +66,6 @@ Resources:
 
   InstanceSecurityGroup2:
     Type: AWS::EC2::SecurityGroup
-    Metadata:
-    cfn_nag:
-      rules_to_suppress:
-        - id: W9
-          reason: "This is a public facing ELB and ingress from the internet should be permitted."
-        - id: W5
-          reason: "This is a public facing ELB and ingress from the internet should be permitted."
     DependsOn:
       - Subnet
     Properties:
@@ -93,13 +79,6 @@ Resources:
 
   InstanceSecurityGroup3:
     Type: AWS::EC2::SecurityGroup
-    Metadata:
-    cfn_nag:
-      rules_to_suppress:
-        - id: W9
-          reason: "This is a public facing ELB and ingress from the internet should be permitted."
-        - id: W5
-          reason: "This is a public facing ELB and ingress from the internet should be permitted."
     DependsOn:
       - Subnet
     Properties:
@@ -113,19 +92,12 @@ Resources:
 
   InstanceSecurityGroup4:
     Type: AWS::EC2::SecurityGroup
-    Metadata:
-    cfn_nag:
-      rules_to_suppress:
-        - id: W9
-          reason: "This is a public facing ELB and ingress from the internet should be permitted."
-        - id: W5
-          reason: "This is a public facing ELB and ingress from the internet should be permitted."
     DependsOn:
       - Subnet
     Properties:
       VpcId: !Ref VPC
       GroupDescription: InstanceSecurityGroup4
-      SecurityGroupIngress:
+      SecurityGroupEgress:
         - IpProtocol: tcp
           FromPort: '22'
           ToPort: '22'
@@ -136,6 +108,6 @@ Resources:
     Properties:
       GroupId: "sg-12341234"
       CidrIpv6: ::/0
-      FromPort: '22'
-      ToPort: '22'
+      FromPort: 46
+      ToPort: 46
       IpProtocol: "tcp"
