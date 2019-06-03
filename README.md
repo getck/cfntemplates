@@ -1,2 +1,2 @@
 # cfntemplates
-Validating cfn template - 1
+Validating cfn template 
